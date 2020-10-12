@@ -10,7 +10,7 @@ To run this example, you will need to ensure that your build architecture matche
 ```bash
 $ make
 $ mkdir bin/extensions
-$ mv main ebpf_prog bin/extension
+$ mv main ebpf_prog bin/extensions
 ```
 
 ## Layer Setup Process
