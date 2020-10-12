@@ -1,4 +1,4 @@
-# An attempt to add BPF programs as an extension for AWS labda
+# An attempt to add BPF programs as an extension for AWS lambda
 
 The provided code sample demonstrates how to get a basic ebpf program extension written in Go up and running.
 
