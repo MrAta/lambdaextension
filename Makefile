@@ -1,9 +1,31 @@
-build:
-	GOOS=linux GOARCH=amd64 go build -o bin/extensions/go-example-extension main.go
+# Copyright (c) 2020 Dropbox, Inc.
+# Full license can be found in the LICENSE file.
 
-build-GoExampleExtensionLayer:
-	GOOS=linux GOARCH=amd64 go build -o $(ARTIFACTS_DIR)/extensions/go-example-extension main.go
-	chmod +x $(ARTIFACTS_DIR)/extensions/go-example-extension
+GOCMD := go
+GOBUILD := $(GOCMD) build
+GOCLEAN := $(GOCMD) clean
+CLANG := clang
+CLANG_INCLUDE := -I../../.. 
 
-run-GoExampleExtensionLayer:
-	go run go-example-extension/main.go
+GO_SOURCE := main.go
+GO_BINARY := main
+
+EBPF_SOURCE := ebpf_prog/kprobe.c
+EBPF_BINARY := ebpf_prog/kprobe.elf
+
+all: build_bpf build_go
+
+build_bpf: $(EBPF_BINARY)
+
+build_go: $(GO_BINARY)
+
+clean:
+	$(GOCLEAN)
+	rm -f $(GO_BINARY)
+	rm -f $(EBPF_BINARY)
+
+$(EBPF_BINARY): $(EBPF_SOURCE)
+	$(CLANG) $(CLANG_INCLUDE) -O2 -target bpf -c $^  -o $@
+
+$(GO_BINARY): $(GO_SOURCE)
+	GOOS=linux GOARCH=amd64 $(GOBUILD) -v -o $@
