@@ -1,0 +1,10 @@
+# github.com/dropbox/goebpf v0.0.0-20200921200800-2ef8e0942fc8
+github.com/dropbox/goebpf
+# github.com/vishvananda/netlink v1.1.1-0.20200218174631-5f2fc868c2d0
+github.com/vishvananda/netlink
+github.com/vishvananda/netlink/nl
+# github.com/vishvananda/netns v0.0.0-20200520041808-52d707b772fe
+github.com/vishvananda/netns
+# golang.org/x/sys v0.0.0-20201009025420-dfb3f7c4e634
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
